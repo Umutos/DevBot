@@ -26,6 +26,8 @@ void USpatialMemoryComponent::StoreDetectedActorsArray(TArray<AActor*> DetectedA
 
 void USpatialMemoryComponent::StoreDetectedActor(AActor* DetectedActor)
 {
+	if (Cast<AJackalInteractiveProp>(DetectedActor)->GetPropType() == EInteractivePropType::Unknown)
+		return;
 	FSpatialMemoryElement NewElement;
 	NewElement.Timestamp = GetWorld()->GetTimeSeconds();
 	NewElement.ElementID = DetectedActor->GetUniqueID();
@@ -46,12 +48,26 @@ void USpatialMemoryComponent::StoreDetectedActor(AActor* DetectedActor)
 	AddSpatialMemoryElement(NewElement);
 }
 
+
+
 void USpatialMemoryComponent::MergeSpatialMemoryMaps(TArray<FSpatialMemoryElement> OtherMap)
 {
 	/**
 	 * TD - A COMPLETER - TD
 	 */
 
+}
+
+TArray<FVector> USpatialMemoryComponent::GetAllPropsTypePos(EInteractivePropType type)
+{
+	TArray<FVector> allProp;
+	for (int i = 0; i < SpatialItemsMemory.Num(); i++)
+	{
+		if (SpatialItemsMemory[i].DetectedObject == type)
+			allProp.Add(SpatialItemsMemory[i].Location);
+	}
+
+	return allProp;
 }
 
 TArray<FSpatialMemoryElement> USpatialMemoryComponent::GetSpatialItemsMemory()

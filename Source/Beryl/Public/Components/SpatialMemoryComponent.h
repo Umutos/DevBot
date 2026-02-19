@@ -73,6 +73,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "SpatialMemory|Objects")
 	void MergeSpatialMemoryMaps(TArray<FSpatialMemoryElement> OtherMap);
 
+
+	UFUNCTION(BlueprintCallable, Category = "SpatialMemory|Objects")
+	TArray<FVector> GetAllPropsTypePos(EInteractivePropType type);
+
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "SpatialMemory|Objects")
 	TArray<FSpatialMemoryElement> GetSpatialItemsMemory();
 

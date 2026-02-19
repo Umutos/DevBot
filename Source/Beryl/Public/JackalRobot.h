@@ -101,7 +101,7 @@ protected:
     USensorComponent* SensorComponent;
 
     // Map memory component
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
     USpatialMemoryComponent* MapMemoryComponent;
 
     // Wheels
