@@ -116,6 +116,7 @@ void USpatialMemoryComponent::StoreDetectedActor(AActor* DetectedActor)
 	FSpatialMemoryElement NewElement;
 	NewElement.Timestamp = GetWorld()->GetTimeSeconds();
 	NewElement.ElementID = DetectedActor->GetUniqueID();
+	NewElement.WorkerID = InteractiveProp->GetWorkerId();
 
 	if (AJackalRobot* DetectedJackalRobot = Cast<AJackalRobot>(DetectedActor))
 	{
@@ -167,13 +168,13 @@ void USpatialMemoryComponent::MergeSpatialMemoryMaps(TArray<FSpatialMemoryElemen
 	OnMapUpdated.Broadcast();
 }
 
-TArray<FVector> USpatialMemoryComponent::GetAllPropsTypePos(EInteractivePropType type)
+TMap<FVector, int> USpatialMemoryComponent::GetAllPropsTypePos(EInteractivePropType type)
 {
-	TArray<FVector> allProp;
+	TMap<FVector, int> allProp;
 	for (int i = 0; i < SpatialItemsMemory.Num(); i++)
 	{
 		if (SpatialItemsMemory[i].DetectedObject == type)
-			allProp.Add(SpatialItemsMemory[i].Location);
+			allProp.Add(SpatialItemsMemory[i].Location, SpatialItemsMemory[i].WorkerID);
 	}
 
 	return allProp;

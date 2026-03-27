@@ -42,6 +42,9 @@ struct FSpatialMemoryElement
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float Timestamp = 0.f;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int WorkerID;
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(
@@ -88,7 +91,7 @@ public:
 	void MergeSpatialMemoryMaps(TArray<FSpatialMemoryElement> OtherMap);
 
 	UFUNCTION(BlueprintCallable, Category = "SpatialMemory|Objects")
-	TArray<FVector> GetAllPropsTypePos(EInteractivePropType type);
+	TMap<FVector, int> GetAllPropsTypePos(EInteractivePropType type);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "SpatialMemory|Objects")
 	TArray<FSpatialMemoryElement> GetSpatialItemsMemory();

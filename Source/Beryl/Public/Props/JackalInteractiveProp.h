@@ -51,7 +51,14 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	EInteractivePropType GetPropType();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	int GetWorkerId();
+
 protected:
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sensor")
+	int32 IDJackal = -1;
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	EInteractivePropType PropType = EInteractivePropType::Unknown;
 

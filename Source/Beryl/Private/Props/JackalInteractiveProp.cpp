@@ -27,4 +27,9 @@ EInteractivePropType AJackalInteractiveProp::GetPropType()
 	return PropType;
 }
 
+int AJackalInteractiveProp::GetWorkerId()
+{
+	return IDJackal;
+}
+
 
