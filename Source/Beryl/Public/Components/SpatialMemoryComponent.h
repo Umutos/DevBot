@@ -96,6 +96,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "SpatialMemory|Objects")
 	TArray<FSpatialMemoryElement> GetSpatialItemsMemory();
 
+	UFUNCTION(BlueprintCallable, Category = "SpatialMemory|Objects")
+	void RemoveSpatialMemoryElementByLocation(FVector Location, float Tolerance = 50.f);
+	
 	/** Mark a cell as explored in the spatial grid */
 	UFUNCTION(BlueprintCallable, Category = "SpatialMemory|Grid")
 	void ExploreCell(FIntVector CellID);
@@ -115,7 +118,7 @@ public:
 	/** Convert a world location to grid cell coordinates */
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "SpatialMemory|Grid")
 	FIntVector WorldToCell(const FVector& WorldLocation) const;
-
+	
 	/** Convert grid cell coordinates to world center position */
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "SpatialMemory|Grid")
 	FVector CellToWorld(const FIntVector& Cell) const;

@@ -194,6 +194,19 @@ FIntVector USpatialMemoryComponent::WorldToCell(const FVector& WorldLocation) co
 	);
 }
 
+void USpatialMemoryComponent::RemoveSpatialMemoryElementByLocation(FVector Location, float Tolerance)
+{
+	for (int32 i = SpatialItemsMemory.Num() - 1; i >= 0; i--)
+	{
+		if (FVector::Dist(SpatialItemsMemory[i].Location, Location) <= Tolerance)
+		{
+			SpatialItemsMemory.RemoveAt(i);
+			OnMapUpdated.Broadcast();
+			return;
+		}
+	}
+}
+
 FVector USpatialMemoryComponent::CellToWorld(const FIntVector& Cell) const
 {
 	return FVector(
